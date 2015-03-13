@@ -713,14 +713,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             Activate();
         }
 
-        internal void TestDrop(IDockDragSource dragSource, DockOutlineBase dockOutline)
+		internal void TestDrop( DockHelper.CursorPoint info, DockOutlineBase dockOutline )
         {
-            if (!dragSource.CanDockTo(this))
+			if ( !info.DragSource.CanDockTo( this ) )
                 return;
 
-            Point ptMouse = Control.MousePosition;
-
-            HitTestResult hitTestResult = GetHitTest(ptMouse);
+			HitTestResult hitTestResult = GetHitTest( info.Cursor);
             if (hitTestResult.HitArea == HitTestArea.Caption)
                 dockOutline.Show(this, -1);
             else if (hitTestResult.HitArea == HitTestArea.TabStrip && hitTestResult.Index != -1)
@@ -1212,7 +1210,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return this; }
         }
 
-        public IDockContent MouseOverTab { get; set; }
+		public IDockContent MouseOverTab { get; set; }
+
+		void IDockDragSource.OnDragging( Point ptMouse ) {
+		}
 
         #endregion
 
