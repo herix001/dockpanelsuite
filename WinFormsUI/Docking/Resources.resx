@@ -229,4 +229,10 @@
   <data name="LostFocusTab_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\LostFocusTab_Close.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LostFocusTab_Dark_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LostFocusTab_Dark_Close.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LostFocusTab_DarkHover_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LostFocusTab_DarkHover_Close.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

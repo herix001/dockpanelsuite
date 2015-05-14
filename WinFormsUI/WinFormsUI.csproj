@@ -181,13 +181,22 @@
     <Compile Include="Docking\VS2012LightDockPaneCaption.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\VS2012DarkDockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\VS2012LightDockPaneStrip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\VS2012LightDockWindow.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\VS2012DarkSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\VS2012LightSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2012DarkTheme.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\VS2012LightTheme.cs">
@@ -278,6 +287,8 @@
     <Content Include="Docking\Resources\DockIndicator_PanelLeft_VS2012.bmp" />
     <Content Include="Docking\Resources\DockIndicator_PanelRight_VS2012.bmp" />
     <Content Include="Docking\Resources\DockIndicator_PanelTop_VS2012.bmp" />
+    <Content Include="Docking\Resources\LostFocusTab_DarkHover_Close.bmp" />
+    <Content Include="Docking\Resources\LostFocusTab_Dark_Close.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\GendarmeMsBuild.dll')" AssemblyFile="..\gendarme\GendarmeMsBuild.dll" TaskName="GendarmeMsBuild.Gendarme" />

@@ -4,15 +4,17 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal class VS2012LightSplitterControl : DockPane.SplitterControlBase
+    internal class VS2012DarkSplitterControl : DockPane.SplitterControlBase
     {
-        private static readonly SolidBrush _horizontalBrush = new SolidBrush(Color.FromArgb(0xFF, 204, 206, 219));
-		private static readonly Color[] _verticalSurroundColors = new[] { Color.FromArgb(255, 245, 245, 245) };
+        private static readonly SolidBrush _horizontalBrush = new SolidBrush(Color.FromArgb(0xFF, 37, 37, 38));
+		private static readonly Color _horizontalColor = Color.FromArgb(255, 37, 37, 38);
+		private static readonly Color[] _verticalSurroundColors = new[] { Color.FromArgb(255, 45, 45, 48) };
 
 
-        public VS2012LightSplitterControl(DockPane pane)
+		public VS2012DarkSplitterControl( DockPane pane )
             : base(pane)
         {
+			this.BackColor = _horizontalColor;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -34,7 +36,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                             path.AddRectangle(rect);
                             using (var brush = new PathGradientBrush(path)
                                 {
-                                    CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = _verticalSurroundColors
+									CenterColor = _horizontalColor,
+									SurroundColors = _verticalSurroundColors
                                 })
                             {
                                 e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,

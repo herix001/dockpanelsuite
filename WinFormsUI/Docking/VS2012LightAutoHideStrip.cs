@@ -196,6 +196,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+		public Brush BackgroundBrush { get; set; }
+
         public VS2012LightAutoHideStrip(DockPanel panel)
             : base(panel)
         {
@@ -204,12 +206,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.OptimizedDoubleBuffer, true);
             BackColor = SystemColors.ControlLight;
+			BackgroundBrush = SystemBrushes.Control;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.FillRectangle(SystemBrushes.Control, ClientRectangle);
+			g.FillRectangle(BackgroundBrush, ClientRectangle);
             DrawTabStrip(g);
         }
 

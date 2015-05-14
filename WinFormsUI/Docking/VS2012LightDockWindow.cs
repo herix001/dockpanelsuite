@@ -47,7 +47,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         internal class VS2012LightDockWindowSplitterControl : SplitterBase
         {
             private static readonly SolidBrush _horizontalBrush = new SolidBrush(Color.FromArgb(0xFF, 204, 206, 219));
-            private static readonly Color[] _verticalSurroundColors = new[] { SystemColors.Control };
+			private static readonly Color[] _verticalSurroundColors = new[] { Color.FromArgb(255, 245, 245, 245) };
 
             protected override int SplitterSize
             {
@@ -102,5 +102,56 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             }
         }
+
+		internal class VS2012DarkDockWindowSplitterControl : SplitterBase {
+			private static readonly SolidBrush _horizontalBrush = new SolidBrush( Color.FromArgb( 0xFF, 37, 37, 38 ) );
+			private static readonly Color _horizontalColor = Color.FromArgb( 255, 37, 37, 38 );
+			private static readonly Color[] _verticalSurroundColors = new[] { Color.FromArgb( 255, 45, 45, 48 ) };
+
+			protected override int SplitterSize {
+				get { return Measures.SplitterSize; }
+			}
+
+			protected override void StartDrag() {
+				DockWindow window = Parent as DockWindow;
+				if ( window == null )
+					return;
+
+				window.DockPanel.BeginDrag( window, window.RectangleToScreen( Bounds ) );
+			}
+
+			protected override void OnPaint( PaintEventArgs e ) {
+				base.OnPaint( e );
+
+				Rectangle rect = ClientRectangle;
+
+				if ( rect.Width <= 0 || rect.Height <= 0 )
+					return;
+
+				switch ( Dock ) {
+					case DockStyle.Right:
+					case DockStyle.Left: {
+							using ( var path = new GraphicsPath() ) {
+								path.AddRectangle( rect );
+								using ( var brush = new PathGradientBrush( path ) {
+									CenterColor = _horizontalColor,
+									SurroundColors = _verticalSurroundColors
+								} ) {
+									e.Graphics.FillRectangle( brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
+															 Measures.SplitterSize / 3, rect.Height );
+								}
+							}
+						}
+						break;
+					case DockStyle.Bottom:
+					case DockStyle.Top: {
+							e.Graphics.FillRectangle( _horizontalBrush, rect.X, rect.Y,
+													 rect.Width, Measures.SplitterSize );
+						}
+						break;
+				}
+
+			}
+		}
     }
 }
