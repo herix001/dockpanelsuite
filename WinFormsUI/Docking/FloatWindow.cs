@@ -13,6 +13,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private NestedPaneCollection m_nestedPanes;
         internal const int WM_CHECKDISPOSE = (int)(Win32.Msgs.WM_USER + 1);
 
+		internal const int WM_TOPMOSTMENU = (int)( Win32.Msgs.WM_USER + 10 );
+
         internal protected FloatWindow(DockPanel dockPanel, DockPane pane)
         {
             InternalConstruct(dockPanel, pane, false, Rectangle.Empty);
@@ -57,6 +59,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             ResumeLayout();
         }
+
+		protected override void OnLoad( EventArgs e ) {
+			base.OnLoad( e );
+
+			IntPtr sysMenuHandle = NativeMethods.GetSystemMenu( this.Handle, false );
+			NativeMethods.InsertMenu( sysMenuHandle, 5, (int)Win32.MenuCommand.MF_BYPOSITION | (int)Win32.MenuCommand.MF_SEPARATOR, 0, string.Empty );
+			NativeMethods.InsertMenu( sysMenuHandle, 6, (int)Win32.MenuCommand.MF_BYPOSITION, WM_TOPMOSTMENU, "´°¿ÚÖÃ¶¥" );
+		}
 
         protected override void Dispose(bool disposing)
         {
@@ -271,6 +281,24 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (NestedPanes.Count == 0)
                         Dispose();
                     return;
+
+				case (int)Win32.Msgs.WM_SYSCOMMAND: {
+
+						IntPtr sysMenuHandle = NativeMethods.GetSystemMenu( this.Handle, false );
+						NativeMethods.CheckMenuItem( sysMenuHandle, WM_TOPMOSTMENU, this.TopMost ? (int)Win32.MenuCommand.MF_CHECKED : (int)Win32.MenuCommand.MF_UNCHECKED );
+
+						switch ( m.WParam.ToInt32() ) {
+
+							case WM_TOPMOSTMENU:
+								this.TopMost = !this.TopMost;
+								return;
+
+							default:
+								break;
+						}
+
+					}
+					break;
             }
 
             base.WndProc(ref m);

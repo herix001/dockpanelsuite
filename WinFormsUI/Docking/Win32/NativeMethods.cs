@@ -57,5 +57,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         [DllImport("user32.dll")]
         public static extern IntPtr CallNextHookEx(IntPtr hhook, int code, IntPtr wParam, IntPtr lParam);
-    }
+
+		[DllImport( "user32.dll" )]
+		public static extern IntPtr GetSystemMenu( IntPtr hWnd, bool bRevert );
+
+		[DllImport( "user32.dll" )]
+		public static extern bool InsertMenu( IntPtr hMenu, Int32 wPosition, Int32 wFlags, Int32 wIDNewItem, string lpNewItem );
+
+		[DllImport( "user32.dll" )]
+		public static extern bool CheckMenuItem( IntPtr hMenu, Int32 wPosition, Int32 wChecked );
+	}
 }

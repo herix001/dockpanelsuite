@@ -367,4 +367,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Win32
         WH_KEYBOARD_LL = 13,
         WH_MOUSE_LL = 14
     }
+
+	internal enum MenuCommand : int {
+		MF_UNCHECKED = 0,
+		MF_CHECKED = 0x0008,
+		MF_SEPARATOR = 0x0800,
+		MF_BYPOSITION = 0x0400
+	}
 }
