@@ -925,9 +925,13 @@ namespace WeifenLuo.WinFormsUI.Docking
         private bool EnsureDocumentTabVisible(IDockContent content, bool repaint)
         {
             int index = Tabs.IndexOf(content);
-            var tab = Tabs[index] as TabVS2012Light;
-            if (tab.TabWidth != 0)
-                return false;
+			try {
+				var tab = Tabs[index] as TabVS2012Light;
+				if ( tab.TabWidth != 0 )
+					return false;
+			} catch {
+				return false;
+			}
 
             StartDisplayingTab = index;
             if (repaint)
