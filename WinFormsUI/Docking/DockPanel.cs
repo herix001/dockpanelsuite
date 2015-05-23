@@ -174,6 +174,25 @@ namespace WeifenLuo.WinFormsUI.Docking
             set	{	AutoHideWindow.ActiveContent = value;	}
         }
 
+		private bool m_allowSplitterDrag = !Win32Helper.IsRunningOnMono;
+		[LocalizedCategory( "Category_Docking" )]
+		[LocalizedDescription( "DockPanel_AllowSplitterDrag_Description" )]
+		[DefaultValue( true )]
+		public bool AllowSplitterDrag {
+			get {
+				if ( Win32Helper.IsRunningOnMono && m_allowSplitterDrag )
+					m_allowSplitterDrag = false;
+
+				return m_allowSplitterDrag;
+			}
+			set {
+				if ( Win32Helper.IsRunningOnMono && value )
+					throw new InvalidOperationException( "AllowSplitterDrag can only be false if running on Mono" );
+
+				m_allowSplitterDrag = value;
+			}
+		}
+
         private bool m_allowEndUserDocking = !Win32Helper.IsRunningOnMono;
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_AllowEndUserDocking_Description")]

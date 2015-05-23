@@ -159,7 +159,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal void BeginDrag(ISplitterDragSource dragSource, Rectangle rectSplitter)
         {
-            GetSplitterDragHandler().BeginDrag(dragSource, rectSplitter);
+			if ( m_allowSplitterDrag ) {
+				GetSplitterDragHandler().BeginDrag( dragSource, rectSplitter );
+			}
         }
     }
 }
