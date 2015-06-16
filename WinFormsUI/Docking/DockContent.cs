@@ -157,7 +157,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        protected virtual string GetPersistString()
+        public virtual string GetPersistString()
         {
             return GetType().ToString();
         }
