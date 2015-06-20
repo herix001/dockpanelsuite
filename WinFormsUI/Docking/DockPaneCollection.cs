@@ -5,6 +5,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     public class DockPaneCollection : ReadOnlyCollection<DockPane>
     {
+		object sync = new object();
+
         internal DockPaneCollection()
             : base(new List<DockPane>())
         {
@@ -32,8 +34,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal void Dispose()
         {
-            for (int i=Count - 1; i>=0; i--)
-                this[i].Close();
+			lock( sync )
+			{
+				for ( int i = Count - 1; i >= 0; i-- )
+					try
+					{
+						this[i].Close();
+					}
+					catch { }
+            }
         }
 
         internal void Remove(DockPane pane)
