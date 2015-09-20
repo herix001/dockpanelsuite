@@ -283,6 +283,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
 				case (int)Win32.Msgs.WM_SYSCOMMAND: {
+						if ( m.WParam.ToInt32() == 0xF100 ) // SC_KEYMENU
+							return;
+
 
 						IntPtr sysMenuHandle = NativeMethods.GetSystemMenu( this.Handle, false );
 						NativeMethods.CheckMenuItem( sysMenuHandle, WM_TOPMOSTMENU, this.TopMost ? (int)Win32.MenuCommand.MF_CHECKED : (int)Win32.MenuCommand.MF_UNCHECKED );
