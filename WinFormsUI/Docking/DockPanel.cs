@@ -193,6 +193,32 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 		}
 
+        bool canClosePane = false;
+        public bool CanClosePane
+        {
+            get
+            {
+                return canClosePane;
+            }
+            set
+            {
+                canClosePane = value;
+            }
+        }
+
+        bool canHidePane = false;
+        public bool CanHidePane
+        {
+            get
+            {
+                return canHidePane;
+            }
+            set
+            {
+                canHidePane = value;
+            }
+        }
+
         private bool m_allowEndUserDocking = !Win32Helper.IsRunningOnMono;
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_AllowEndUserDocking_Description")]

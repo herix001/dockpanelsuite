@@ -50,6 +50,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_tabStripControl; }
         }
 
+        public bool CanClose
+        {
+            get
+            {
+                return DockPanel.CanClosePane;
+            }
+        }
+
+        public bool CanHide
+        {
+            get
+            {
+                return DockPanel.CanHidePane;
+            }
+        }
+
         internal protected DockPane(IDockContent content, DockState visibleState, bool show)
         {
             InternalConstruct(content, visibleState, false, Rectangle.Empty, null, DockAlignment.Right, 0.5, show);

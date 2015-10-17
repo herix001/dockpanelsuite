@@ -453,11 +453,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private void Close_Click(object sender, EventArgs e)
         {
-            DockPane.CloseActiveContent();
+            if (DockPane.CanClose)
+                DockPane.CloseActiveContent();
         }
 
         private void AutoHide_Click(object sender, EventArgs e)
         {
+            if (!DockPane.CanHide)
+                return;
             DockPane.DockState = DockHelper.ToggleAutoHideState(DockPane.DockState);
             if (DockHelper.IsDockStateAutoHide(DockPane.DockState))
             {
