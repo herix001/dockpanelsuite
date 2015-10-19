@@ -1258,7 +1258,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return;
 
             var indexHit = HitTest();
-            if (indexHit > -1)
+            if (indexHit > -1 && DockPane.CanClose)
                 TabCloseButtonHit(indexHit);
         }
 
@@ -1393,7 +1393,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private void Close_Click(object sender, EventArgs e)
         {
-            DockPane.CloseActiveContent();
+            if (DockPane.CanClose)
+                DockPane.CloseActiveContent();
         }
 
         protected internal override int HitTest(Point ptMouse)
