@@ -65,7 +65,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 			IntPtr sysMenuHandle = NativeMethods.GetSystemMenu( this.Handle, false );
 			NativeMethods.InsertMenu( sysMenuHandle, 5, (int)Win32.MenuCommand.MF_BYPOSITION | (int)Win32.MenuCommand.MF_SEPARATOR, 0, string.Empty );
-			NativeMethods.InsertMenu( sysMenuHandle, 6, (int)Win32.MenuCommand.MF_BYPOSITION, WM_TOPMOSTMENU, "´°¿ÚÖÃ¶¥" );
+			NativeMethods.InsertMenu( sysMenuHandle, 6, (int)Win32.MenuCommand.MF_BYPOSITION, WM_TOPMOSTMENU, "Top Most" );
 		}
 
         protected override void Dispose(bool disposing)
